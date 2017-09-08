@@ -11,5 +11,6 @@ import ru.esbt.address.domain.Naspunkt;
 public interface DataRepository<V extends Naspunkt> {
 
     List<Naspunkt> getData();
+    Naspunkt getNaspunkt(Long cmOkato);
 
 }

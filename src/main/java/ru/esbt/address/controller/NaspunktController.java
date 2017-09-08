@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import ru.esbt.address.domain.Naspunkt;
@@ -39,6 +40,16 @@ public class NaspunktController {
             List<Naspunkt> result = dataService.getRandomData();
             //Set<String> result = dataService.getRandomData();
             return new ModelAndView("naspunktpage", Collections.singletonMap("naspunkt", result));
+        } catch (Exception e) {
+            throw new RestException(e);
+        }
+    }
+
+    @RequestMapping(value = "/naspunkt/edit", method = RequestMethod.GET)
+    public ModelAndView editData(@RequestParam(value="id", required=true) Long id) throws RestException {
+        try {
+            
+            return new ModelAndView("editpage", Collections.singletonMap("naspunktAttribute",dataService.get(id)));
         } catch (Exception e) {
             throw new RestException(e);
         }

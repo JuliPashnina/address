@@ -35,7 +35,7 @@ public class DataRepositoryImpl implements DataRepository<Naspunkt> {
         
         List<Naspunkt> result = new ArrayList<Naspunkt>();
         //Set<String> result = new HashSet<>();
-        SqlRowSet rowSet = jdbcOperations.queryForRowSet("SELECT * FROM cm_naspunkt");//concat(cm_socr,' ',cm_ctext)
+        SqlRowSet rowSet = jdbcOperations.queryForRowSet("SELECT * FROM cm_naspunkt order by cm_ctext");//concat(cm_socr,' ',cm_ctext)
         //SqlRowSet rowSet = jdbcOperations.queryForRowSet("SELECT cm_okato FROM cm_naspunkt ;");
         while (rowSet.next()) {
             //LOG.info(rowSet.getString("data_description"));
@@ -53,6 +53,18 @@ public class DataRepositoryImpl implements DataRepository<Naspunkt> {
         return result;
     }
 
-    
+    public Naspunkt getNaspunkt(Long cmOkato) {
+  
+        SqlRowSet rowSet = jdbcOperations.queryForRowSet("SELECT * FROM cm_naspunkt where cm_okato = " + cmOkato.toString());
+            Naspunkt np = new Naspunkt();
+            rowSet.first();
+            np.setId(rowSet.getLong("CM_OKATO"));
+            np.setName(rowSet.getString("CM_CTEXT"));
+            np.setCmSocr(rowSet.getString("CM_SOCR"));
+            np.setState(rowSet.getString("STATE"));
+            np.setCmNterr(rowSet.getLong("CM_NTERR"));
+            np.setCmPoselen(rowSet.getString("CM_POSELEN"));
+        return np;
+    }
 
 }

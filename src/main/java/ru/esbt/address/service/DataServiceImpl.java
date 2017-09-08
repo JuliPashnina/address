@@ -1,6 +1,5 @@
 package ru.esbt.address.service;
 
-
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
@@ -27,18 +26,22 @@ public class DataServiceImpl implements DataService {
 
     @Override
     public boolean persist(String problem) {
-      /*  try {
+        /*  try {
             dataRepository.persist(new Data(UUID.randomUUID(), problem));
             return true;
         } catch (Exception e) {
             LOG.error("ERROR SAVING DATA: " + e.getMessage(), e);
             return false;
         }*/
-      return true;
+        return true;
     }
 
     @Override
     public List<Naspunkt> getRandomData() {
         return dataRepository.getData();
+    }
+
+    public Naspunkt get(Long id) {
+        return dataRepository.getNaspunkt(id);
     }
 }

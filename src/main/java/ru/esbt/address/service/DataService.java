@@ -14,4 +14,6 @@ public interface DataService {
     public boolean persist(String problem);
 
     public List<Naspunkt> getRandomData();
+
+    public Naspunkt get(Long id) ;
 }

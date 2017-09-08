@@ -5,12 +5,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Общий список</title>
+<title>Населенные пункты</title>
 </head>
 <body>
-<h1>Населенные пункты</h1>
- 
-<c:url var="addUrl" value="/main/naspunkt/add" />
+<h1>Общий список</h1>
+
+<c:url var="addUrl" value="/naspunkt/add" />
+<a href="${addUrl}">Новый населенный пункт</a> 
 <table style="border: 1px solid; width: 500px; text-align:center">
  <thead style="background:#fcf">
   <tr>
@@ -25,8 +26,8 @@
  </thead>
  <tbody>
  <c:forEach items="${naspunkt}" var="city">
-   <c:url var="editUrl" value="/main/naspunkt/edit?id=${city.cmOkato}" />
-   <c:url var="deleteUrl" value="/main/naspunkt/delete?id=${city.cmOkato}" />
+   <c:url var="editUrl" value="/naspunkt/edit?id=${city.cmOkato}" />
+   <c:url var="deleteUrl" value="/naspunkt/delete?id=${city.cmOkato}" />
   <tr>
    <td><c:out value="${city.cmOkato}" /></td>
    <td><c:out value="${city.cmCtext}" /></td>
@@ -34,16 +35,15 @@
    <td><c:out value="${city.cmSocr}" /></td>
    <td><c:out value="${city.cmNterr}" /></td>
    <td><c:out value="${city.cmPoselen}" /></td>
-   <td><a href="${editUrl}">Edit</a></td>
-   <td><a href="${deleteUrl}">Delete</a></td>
-   <td><a href="${addUrl}">Add</a></td>
+   <td><a href="${editUrl}">Изменить</a></td>
+   <td><a href="${deleteUrl}">Удалить</a></td>
   </tr>
  </c:forEach>
  </tbody>
 </table>
  
 <c:if test="${empty naspunkt}">
- There are currently no cities in the list. <a href="${addUrl}">Add</a> a city.
+ Список пуст. <a href="${addUrl}">Добавить</a> населенный пункт.
 </c:if>
  
 </body>
